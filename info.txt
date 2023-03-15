@@ -1,0 +1,14 @@
+Change user password / create a new user
+
+docker-compose exec mosquitto mosquitto_passwd -b /mosquitto/config/password.txt user password
+docker-compose restart
+
+
+Delete user
+
+docker-compose exec mosquitto mosquitto_passwd -D /mosquitto/config/password.txt user
+docker-compose restart
+
+
+Mosquitto-docker-compose template
+https://github.com/vvatelot/mosquitto-docker-compose

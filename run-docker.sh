@@ -1,0 +1,1 @@
+cd mosquitto && docker-compose up -d

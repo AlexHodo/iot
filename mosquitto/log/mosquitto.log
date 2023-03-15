@@ -1,0 +1,76 @@
+1678872652: mosquitto version 2.0.15 starting
+1678872652: Config loaded from /mosquitto/config/mosquitto.conf.
+1678872652: Opening ipv4 listen socket on port 1883.
+1678872652: Opening ipv6 listen socket on port 1883.
+1678872652: mosquitto version 2.0.15 running
+1678872702: New connection from 172.20.0.1:59410 on port 1883.
+1678872702: New client connected from 172.20.0.1:59410 as Client1 (p2, c1, k60).
+1678872709: Client Client1 closed its connection.
+1678875977: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1678878019: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1678879506: New connection from 172.20.0.1:57428 on port 1883.
+1678879506: New client connected from 172.20.0.1:57428 as Client2 (p2, c1, k60).
+1678879516: Client Client2 closed its connection.
+1678879521: New connection from 172.20.0.1:59224 on port 1883.
+1678879521: New client connected from 172.20.0.1:59224 as Client1 (p2, c1, k60).
+1678879543: Client Client1 closed its connection.
+1678879654: New connection from 172.20.0.1:64616 on port 1883.
+1678879654: New client connected from 172.20.0.1:64616 as Client2 (p2, c1, k60).
+1678879655: Client Client2 closed its connection.
+1678879680: New connection from 172.20.0.1:57646 on port 1883.
+1678879680: New client connected from 172.20.0.1:57646 as Client2 (p2, c1, k60).
+1678879690: Client Client2 closed its connection.
+1678879691: New connection from 172.20.0.1:58146 on port 1883.
+1678879691: New client connected from 172.20.0.1:58146 as Client1 (p2, c1, k60).
+1678879696: New connection from 172.20.0.1:58150 on port 1883.
+1678879696: New client connected from 172.20.0.1:58150 as Client2 (p2, c1, k60).
+1678879704: Client Client1 closed its connection.
+1678879704: Client Client2 closed its connection.
+1678879739: New connection from 172.20.0.1:59766 on port 1883.
+1678879739: New client connected from 172.20.0.1:59766 as Client2 (p2, c1, k60).
+1678879739: Client Client2 closed its connection.
+1678879744: New connection from 172.20.0.1:59780 on port 1883.
+1678879744: New client connected from 172.20.0.1:59780 as Client1 (p2, c1, k60).
+1678879747: Client Client1 closed its connection.
+1678879813: New connection from 172.20.0.1:56084 on port 1883.
+1678879813: New client connected from 172.20.0.1:56084 as Client2 (p2, c1, k60).
+1678879820: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1678879823: Client Client2 closed its connection.
+1678879836: New connection from 172.20.0.1:64206 on port 1883.
+1678879836: New client connected from 172.20.0.1:64206 as Client2 (p2, c1, k60).
+1678879837: Client Client2 closed its connection.
+1678879837: New connection from 172.20.0.1:60318 on port 1883.
+1678879837: New client connected from 172.20.0.1:60318 as Client2 (p2, c1, k60).
+1678879838: Client Client2 closed its connection.
+1678879911: New connection from 172.20.0.1:64808 on port 1883.
+1678879911: New client connected from 172.20.0.1:64808 as Client2 (p2, c1, k60).
+1678879913: New connection from 172.20.0.1:64812 on port 1883.
+1678879913: New client connected from 172.20.0.1:64812 as Client1 (p2, c1, k60).
+1678879922: Client Client2 closed its connection.
+1678879924: Client Client1 closed its connection.
+1678880064: New connection from 172.20.0.1:55052 on port 1883.
+1678880064: New client connected from 172.20.0.1:55052 as Client2 (p2, c1, k60).
+1678880064: Client Client2 closed its connection.
+1678880093: New connection from 172.20.0.1:59546 on port 1883.
+1678880093: New client connected from 172.20.0.1:59546 as python-mqtt-16 (p2, c1, k60).
+1678880097: New connection from 172.20.0.1:59548 on port 1883.
+1678880097: New client connected from 172.20.0.1:59548 as Client1 (p2, c1, k60).
+1678880100: Client python-mqtt-16 closed its connection.
+1678880102: Client Client1 closed its connection.
+1678880493: mosquitto version 2.0.15 terminating
+1678880493: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1678880493: mosquitto version 2.0.15 starting
+1678880493: Config loaded from /mosquitto/config/mosquitto.conf.
+1678880493: Opening ipv4 listen socket on port 1883.
+1678880493: Opening ipv6 listen socket on port 1883.
+1678880493: mosquitto version 2.0.15 running
+1678880533: New connection from 172.20.0.1:62888 on port 1883.
+1678880533: New client connected from 172.20.0.1:62888 as python-mqtt-42 (p2, c1, k60, u'user').
+1678880536: New connection from 172.20.0.1:62902 on port 1883.
+1678880536: New client connected from 172.20.0.1:62902 as Client1 (p2, c1, k60, u'user').
+1678880539: Client Client1 closed its connection.
+1678880539: Client python-mqtt-42 closed its connection.
+1678880547: New connection from 172.20.0.1:64768 on port 1883.
+1678880547: Client Client1 disconnected, not authorised.
+1678880548: New connection from 172.20.0.1:64714 on port 1883.
+1678880548: Client Client1 disconnected, not authorised.

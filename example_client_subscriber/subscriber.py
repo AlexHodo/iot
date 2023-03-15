@@ -5,12 +5,12 @@ import random
 from paho.mqtt import client as mqtt_client
 
 
-broker = 'localhost'
-port = 1883
-topic = "Test"
+broker = 'mqtt.interceptly.xyz'
+port = 8883
+topic = "test"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
-username = 'user'
+username = 'antonio'
 password = 'password'
 
 
@@ -22,6 +22,7 @@ def connect_mqtt() -> mqtt_client:
             print("Failed to connect, return code %d\n", rc)
 
     client = mqtt_client.Client(client_id)
+    client.tls_set()
     client.username_pw_set(username, password)
     client.on_connect = on_connect
     client.connect(broker, port)

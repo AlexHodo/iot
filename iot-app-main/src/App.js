@@ -22,21 +22,37 @@ const Map = (props) => {
     password: "password",
     keepalive: 60,
     clientId: `mqtt_${Math.random().toString(16)}`,
-    rejectUnauthorized: false,
+    rejectUnauthorized: false
   };
 
   React.useEffect(() => {
     setStatus("Connecting...");
-    setClient(
-      mqtt.connect("wss://mqtt.interceptly.xyz", {
-        port: 8083,
-        username: "antonio",
-        password: "password",
-        protocol: "wss",
-        clientId: `mqtt_${Math.random().toString(16)}`,
-        rejectUnauthorized: false,
-      })
-    );
+    setClient(mqtt.connect("wss://mqtt.interceptly.xyz", {
+      port: 8083,
+      username: "antonio",
+      password: "password",
+      protocol: "wss",
+      clientId: `mqtt_${Math.random().toString(16)}`,
+      rejectUnauthorized: false,
+    }));
+    // TODO: Asa poti seta punctele:
+    setPoints([
+      {
+        lat: 0,
+        lon: 0, // lon nu long!
+        id: 1,
+      },
+      {
+        lat: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
+        lon: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
+        id: 2,
+      },
+      {
+        lat: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
+        lon: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
+        id: 3,
+      },
+    ]);
   }, []);
 
   const mqttSub = (subscription) => {
@@ -47,6 +63,7 @@ const Map = (props) => {
         if (error) {
           console.log("Subscribe to topic error", error);
         } else {
+          // TODO: Aici poti apela setPoints(...)
           console.log("Subscribed to topic", granted);
         }
       });
@@ -56,6 +73,9 @@ const Map = (props) => {
   React.useEffect(() => {
     console.log(client);
     if (client) {
+      // TODO
+      // E mereu false!!!
+      console.log(client.connected);
       client.on("connect", () => {
         setStatus("Connected");
       });
@@ -68,12 +88,8 @@ const Map = (props) => {
       });
       client.on("message", (topic, message) => {
         console.log("Message received");
-        message = JSON.parse(message);
-        let newPoints = [];
-        message.coords.map((item, index) => {
-          newPoints[index] = item;
-        });
-        setPoints(newPoints);
+        const payload = { topic, message: message.toString() };
+        console.log(payload);
       });
       mqttSub({ topic: "coords", qos: 1 });
     }

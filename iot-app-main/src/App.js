@@ -10,7 +10,7 @@ const icon = new L.Icon({
 });
 
 const Map = (props) => {
-  const [points, setPoints] = React.useState([]);
+  const [points, setPoints] = React.useState({});
 
   const [client, setClient] = React.useState(null);
   const [status, setStatus] = React.useState(null);
@@ -54,8 +54,7 @@ const Map = (props) => {
   };
 
   React.useEffect(() => {
-    console.log(client);
-    console.log(points);
+    // console.log(client);
     if (client) {
       client.on("connect", () => {
         setStatus("Connected");
@@ -70,23 +69,16 @@ const Map = (props) => {
       client.on("message", (topic, message) => {
         message = JSON.parse(message);
         if (message.id) {
-          const pointsCopy = points.slice();
-          const idx = pointsCopy.findIndex(x => x.id === message.id);
-
-          if (idx != -1) {
-            console.log(idx);
-            pointsCopy[idx] = message;
-            setPoints(pointsCopy);
-          }
-          else {
-            setPoints(current => [...current, message]);
-          }
-          console.log(points);
+          const pointsCopy = JSON.parse(JSON.stringify(points)); // copy by value
+          pointsCopy[`${message.id}`] = message;
+          setPoints(pointsCopy);
         }
       });
       mqttSub({ topic: "coords", qos: 1 });
     }
   }, [client, points]);
+
+  console.log(points);
 
   return (
     <>
@@ -114,13 +106,15 @@ const Map = (props) => {
           attribution={`&copy; ${new Date().getFullYear()} <a href="http://osm.org/copyright">OpenStreetMap</a> contributors.`}
           className="map-tiles"
         />
-        {points.map((point) => (
-          <Marker
-            key={point.id}
-            position={[point.lat, point.long]}
-            icon={icon}
-          />
-        ))}
+        {Object.entries(points).map(([key, point]) => {
+          return (
+            <Marker
+              key={point.id}
+              position={[point.lat, point.long]}
+              icon={icon}
+            />
+          );
+        })}
       </MapContainer>
     </>
   );

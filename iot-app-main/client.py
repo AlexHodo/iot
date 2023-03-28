@@ -25,7 +25,7 @@ msg_count = 0
 try:
     while msg_count < 200:
         time.sleep(1)
-        id = randint(1,10)
+        id = randint(1,10) # change 10 with any value such that you get max X pins on the map
         lat = uniform(-85,85)
         long = uniform(-180,180)
         msg_count += 1

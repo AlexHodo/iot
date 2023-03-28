@@ -22,48 +22,31 @@ const Map = (props) => {
     password: "password",
     keepalive: 60,
     clientId: `mqtt_${Math.random().toString(16)}`,
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
   };
 
   React.useEffect(() => {
     setStatus("Connecting...");
-    setClient(mqtt.connect("wss://mqtt.interceptly.xyz", {
-      port: 8083,
-      username: "antonio",
-      password: "password",
-      protocol: "wss",
-      clientId: `mqtt_${Math.random().toString(16)}`,
-      rejectUnauthorized: false,
-    }));
-    // TODO: Asa poti seta punctele:
-    setPoints([
-      {
-        lat: 0,
-        lon: 0, // lon nu long!
-        id: 1,
-      },
-      {
-        lat: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
-        lon: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
-        id: 2,
-      },
-      {
-        lat: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
-        lon: Math.random() * 90 * (Math.random() < 0.5 ? -1 : 1),
-        id: 3,
-      },
-    ]);
+    setClient(
+      mqtt.connect("wss://mqtt.interceptly.xyz", {
+        port: 8083,
+        username: "antonio",
+        password: "password",
+        protocol: "wss",
+        clientId: `mqtt_${Math.random().toString(16)}`,
+        rejectUnauthorized: false,
+      })
+    );
   }, []);
 
   const mqttSub = (subscription) => {
     if (client) {
       const { topic, qos } = subscription;
       console.log(`Subscribing to topic ${topic} with qos = ${qos}...`);
-      client.subscribe(topic, { qos: qos }, (error, granted) => {
+      client.subscribe(topic, (error, granted) => {
         if (error) {
           console.log("Subscribe to topic error", error);
         } else {
-          // TODO: Aici poti apela setPoints(...)
           console.log("Subscribed to topic", granted);
         }
       });
@@ -72,10 +55,8 @@ const Map = (props) => {
 
   React.useEffect(() => {
     console.log(client);
+    console.log(points);
     if (client) {
-      // TODO
-      // E mereu false!!!
-      console.log(client.connected);
       client.on("connect", () => {
         setStatus("Connected");
       });
@@ -87,13 +68,25 @@ const Map = (props) => {
         setStatus("Reconnecting...");
       });
       client.on("message", (topic, message) => {
-        console.log("Message received");
-        const payload = { topic, message: message.toString() };
-        console.log(payload);
+        message = JSON.parse(message);
+        if (message.id) {
+          const pointsCopy = points.slice();
+          const idx = pointsCopy.findIndex(x => x.id === message.id);
+
+          if (idx != -1) {
+            console.log(idx);
+            pointsCopy[idx] = message;
+            setPoints(pointsCopy);
+          }
+          else {
+            setPoints(current => [...current, message]);
+          }
+          console.log(points);
+        }
       });
       mqttSub({ topic: "coords", qos: 1 });
     }
-  }, [client]);
+  }, [client, points]);
 
   return (
     <>
@@ -124,7 +117,7 @@ const Map = (props) => {
         {points.map((point) => (
           <Marker
             key={point.id}
-            position={[point.lat, point.lon]}
+            position={[point.lat, point.long]}
             icon={icon}
           />
         ))}
